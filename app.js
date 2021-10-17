@@ -1,0 +1,47 @@
+const sendButton = document.getElementById("send");
+const emojis = document.querySelector(".ratings-container");
+const ratings = document.querySelectorAll(".rating");
+const panel = document.getElementById("panel");
+
+//let selectedRating = 'Satisfied'
+//const selectedRating = '';
+
+
+
+
+//Remove active class
+ratings.forEach(function(rating) {
+    rating.addEventListener('click', function(){
+        removeAllClasses();
+        rating.classList.add('active');
+        selectedRating = rating.childNodes[3].innerHTML;
+        console.log(selectedRating);
+    })
+})
+
+//Remove all classes 
+
+function removeAllClasses() {
+    ratings.forEach(function(rating) {
+        rating.classList.remove('active');
+    })
+}
+
+
+sendButton.addEventListener('click', displayResult);
+
+function displayResult() {
+    //console.log('test')
+    //const emojis = document.getElementByClassName("ratings-container");
+    panel.innerHTML = `<div class="aftersendemoji">
+    <img src="data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGc+PGVsbGlwc2UgY3g9IjQ0NS4zNTciIGN5PSIyNTMuNjciIGZpbGw9IiNjNTdhNDQiIHJ4PSI2Ni42NDMiIHJ5PSI2Ni42NDMiIHRyYW5zZm9ybT0ibWF0cml4KC4xNiAtLjk4NyAuOTg3IC4xNiAxMjMuNjI0IDY1Mi42NDIpIi8+PGVsbGlwc2UgY3g9IjY2LjY0MyIgY3k9IjI1My42NyIgZmlsbD0iI2VhOWI1OCIgcng9IjY2LjY0MyIgcnk9IjY2LjY0MyIgdHJhbnNmb3JtPSJtYXRyaXgoLjk4NyAtLjE2IC4xNiAuOTg3IC0zOS43NzMgMTMuOTUxKSIvPjxnPjxwYXRoIGQ9Im00NTUuMzM4IDMwMi41MDEtMTk4Ljk4LTYzLjA0Mi0xMCAxMzcuMjM2IDEwIDEyNy4yMzZjMTA5LjcyNy0uMDU0IDE5OC45OC05MS42OTEgMTk4Ljk4LTIwMS40M3oiIGZpbGw9IiMwMGIyZmYiLz48cGF0aCBkPSJtNTcuMzc4IDMwMi41MDEgMTk4Ljk4LTYzLjA0MnYyNjQuNDcxYy0xMDkuNzI3LS4wNTMtMTk4Ljk4LTkxLjY5LTE5OC45OC0yMDEuNDI5eiIgZmlsbD0iIzAwYzdmZiIvPjwvZz48Zz48cGF0aCBkPSJtOTIuNzY5IDc3LjkwM2MtMTkuOTI3IDI2LjMwNy0zMi42MjYgNTguMzczLTM1LjEyMyA5My4yMThsMTA2LjIxOCAxMS44MDZ6IiBmaWxsPSIjMDBjN2ZmIi8+PHBhdGggZD0ibTM1NS44NDggMTgyLjkyNyA5OS4wMjMtMTEuODA2Yy0yLjQ4OC0zNC43MzEtMTUuMTEtNjYuNzAxLTM0LjkyNS05Mi45NnoiIGZpbGw9IiMwMGIyZmYiLz48Zz48cGF0aCBkPSJtMjkwLjM3NyA3My43ODggNTguNDc1LTUxLjU2NGMyOC4yNjkgMTIuMTMgNTIuNzQ3IDMxLjQ1NyA3MS4wOTUgNTUuNjhsLTQ1Ljk2MiA5My4yMTgtOTcuODk0IDU5LjQzNmgtMTkuNzMzbC0xMC01NS41NTcgMTAtNDUuNzAyeiIgZmlsbD0iIzA2NzhjMyIvPjxwYXRoIGQ9Im0yMjIuMzM5IDczLjc4OC01OC40NzUtNTEuNTY0Yy0yOC4yNjkgMTIuMTMtNTIuNzQ3IDMxLjQ1Ny03MS4wOTUgNTUuNjhsNDUuOTYyIDkzLjIxOCA5Ny44OTQgNTkuNDM2aDE5LjczM3YtMTAxLjI2eiIgZmlsbD0iIzAxOTllMyIvPjwvZz48cGF0aCBkPSJtMzQ4LjI3MyAyMi4wNjNjLTIxLjEwNi04Ljk5Ni00NC4zMS0xMy45OTMtNjguNjY1LTEzLjk5M2gtMjMuMjVsLTEwIDU1Ljc4IDEwIDY1LjQ0OHoiIGZpbGw9IiMwMGIyZmYiLz48cGF0aCBkPSJtMTYzLjg2NCAyMi4yMjQgOTIuMTM2IDEwNy40OTIuMzU4LS40MTd2LTEyMS4yMjloLTIzLjQ0OGMtMjQuNTAxIDAtNDcuODM5IDUuMDU1LTY5LjA0NiAxNC4xNTR6IiBmaWxsPSIjMDBjN2ZmIi8+PC9nPjxnPjxwYXRoIGQ9Im00NTQuODcxIDE3MS4xMjJoLTEyMC4xNjZjLTIzLjg3MyAwLTQ2LjMzNCAxMi43MTctNTguNjE4IDMzLjE4OWwtNC4zNyA3LjI4M2gtMTUuMzU5bC0xMCAxOC45NjUgMTAgMTguOTAxaDExLjQ2N2MyNi4zMSAzMy43MDkgNjUuOTI1IDUzLjA0MiAxMDguNjg2IDUzLjA0Mmg3OC44MjdjMC0uMDAxLS4xNjctMTI3LjE5Ni0uNDY3LTEzMS4zOHoiIGZpbGw9IiNlYTliNTgiLz48cGF0aCBkPSJtMjQ0LjEyNCAyMTEuNTkzLTQuMzctNy4yODNjLTEyLjI4My0yMC40NzItMzQuNzQ0LTMzLjE4OS01OC42MTgtMzMuMTg5aC0xMjMuNDljLS4zIDQuMTg3LS40NjIgMTMxLjM3OS0uNDYyIDEzMS4zNzloNzguMzA0YzQyLjc2MiAwIDgyLjM3Ni0xOS4zMzMgMTA4LjY4Ny01My4wNDJoMTIuMTgzdi0zNy44NjV6IiBmaWxsPSIjZWFiMDY1Ii8+PC9nPjxnPjxwYXRoIGQ9Im0zMzcgMjM0LjY2N2gzMHYzMGgtMzB6IiBmaWxsPSIjNjAzYjIwIi8+PHBhdGggZD0ibTE0NSAyMzQuNjY3aDMwdjMwaC0zMHoiIGZpbGw9IiM4MDRlMmIiLz48L2c+PGc+PHBhdGggZD0ibTMxMS40OTYgMzU0Ljk0Ni0yNS45NjgtMTUuMDIxYy02LjAyNCAxMC40MTItMTcuMTc3IDE2LjkxLTI5LjE3IDE3LjAzOGwtMTAgMTQuODQ0IDEwIDE1LjE2MmMyMi42NjgtLjEyOCA0My43Ny0xMi4zNyA1NS4xMzgtMzIuMDIzeiIgZmlsbD0iI2Y3ZjBlYiIvPjxwYXRoIGQ9Im0yNTYgMzU2Ljk3NWMtMTIuMTI5IDAtMjMuNDQ0LTYuNTMzLTI5LjUyOC0xNy4wNWwtMjUuOTY4IDE1LjAyMmMxMS40MjkgMTkuNzU1IDMyLjY5MyAzMi4wMjggNTUuNDk2IDMyLjAyOC4xMiAwIC4yMzktLjAwNS4zNTgtLjAwNnYtMzAuMDA2Yy0uMTIuMDAxLS4yMzguMDEyLS4zNTguMDEyeiIgZmlsbD0iI2ZmZmJmNSIvPjwvZz48L2c+PC9zdmc+" />
+    </div>
+    <br>
+    <div>
+    <strong>Feedback: ${selectedRating}</strong>
+    </div>
+    `
+    sendButton.style.display = 'none';
+}
+
+
